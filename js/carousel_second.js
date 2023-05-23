@@ -1,4 +1,3 @@
-
 const buttonForward = document.querySelector('#main_forward');
 const first_number = document.querySelector('#slide_number');
 const second_number = document.querySelector('.second_number');
