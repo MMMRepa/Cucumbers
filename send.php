@@ -1,12 +1,12 @@
 <?php
 
-$to = 'poligraf.kr@gmail.com';
+$to = '';
 
 $name = htmlspecialchars($_POST["name"]);
 $phone = htmlspecialchars($_POST["phone"]);
 
-$token = "770393250:AAELopGkdwjMzqiZmJUBHSZ9JO_YTPmqmh4";
-$chat_id = "-1001340953541";
+$token = "";
+$chat_id = "";
 
 $subject = "Замовлення огірків";
 $message = '<h4>Замовлення огірків(' . date("d.m.y H:i") . ')</h4><b>Имя:</b> ' . $name . '<br><b>Телефон:</b> ' . $phone . '<br>';
@@ -25,7 +25,9 @@ $txt;
 foreach ($arr as $key => $value) {
    $txt .= "<b>" . $key . "</b>" . $value . "%0A";
 };
+if ($token && $chat_id) {
+   $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}", "r");
+}
 
-$sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}", "r");
 
 header("Location: thankyou.html");
